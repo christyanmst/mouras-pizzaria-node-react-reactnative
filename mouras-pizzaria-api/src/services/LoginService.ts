@@ -41,6 +41,10 @@ class LoginService {
             token: token,
          }
     }
+
+    async myProfile() {
+        return { ok: true }
+    }
 }
 
 export { LoginService }
