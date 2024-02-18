@@ -16,9 +16,11 @@ class LoginController {
     }
 
     async myProfile(req: Request, res: Response) {
+        const user_id = req.user_id;
+
         const loginService = new LoginService();
 
-        const profile = await loginService.myProfile();
+        const profile = await loginService.myProfile(user_id);
 
         return res.json(profile);
     }

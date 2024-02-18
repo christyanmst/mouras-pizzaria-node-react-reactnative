@@ -42,8 +42,18 @@ class LoginService {
          }
     }
 
-    async myProfile() {
-        return { ok: true }
+    async myProfile(user_id: number) {
+        const user = await prismaClient.user.findFirst({
+            where: {
+                id: user_id,
+            }, select: {
+                id: true,
+                username: true,
+                email: true,
+            }
+        })
+
+        return user;
     }
 }
 
