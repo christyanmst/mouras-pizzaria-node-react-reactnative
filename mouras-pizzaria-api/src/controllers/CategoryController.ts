@@ -11,6 +11,14 @@ class CategoryControler {
 
         return res.json(category);
     }
+
+    async getCategories(_req: Request, res: Response) {
+        const categoryService = new CategoryService();
+
+        const categories = await categoryService.getCategories();
+
+        return res.json(categories);
+    }
 }
 
 export { CategoryControler }

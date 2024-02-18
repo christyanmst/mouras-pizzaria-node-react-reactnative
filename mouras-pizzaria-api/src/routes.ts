@@ -18,6 +18,7 @@ router.get('/my-profile', isAuthenticated, new LoginController().myProfile);
 // Category
 
 router.post('/category', isAuthenticated, new CategoryControler().createCategory);
+router.get('/category', isAuthenticated, new CategoryControler().getCategories);
 
 
 export { router };

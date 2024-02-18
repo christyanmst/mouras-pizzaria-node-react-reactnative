@@ -20,6 +20,20 @@ class CategoryService {
 
         return category;
     }
+
+    async getCategories() {
+        const categories = await prismaClient.category.findMany({
+            select: {
+                id: true,
+                name: true,
+            },
+            orderBy: {
+                name: 'asc',
+            }
+        });
+
+        return categories;
+    }
 }
 
 export { CategoryService }
