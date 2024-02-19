@@ -15,27 +15,38 @@ const router = Router();
 
 const upload = multer(uploadConfig.upload("./tmp"));
 
+const userController = new UserController();
+const loginController = new LoginController();
+const categoryController = new CategoryControler();
+const productController = new ProductController();
+const orderController = new OrderController();
+const orderItemController = new OrderItemController();
+
 // User
-router.post('/users', isAuthenticated, new UserController().createUser);
+router.post('/users', isAuthenticated, userController.createUser);
 
 // Login
-router.post('/session', new LoginController().authenticate);
-router.get('/my-profile', isAuthenticated, new LoginController().myProfile);
+router.get('/my-profile', isAuthenticated, loginController.myProfile);
+router.post('/login', loginController.authenticate);
 
 // Category
-router.post('/category', isAuthenticated, new CategoryControler().createCategory);
-router.get('/category', isAuthenticated, new CategoryControler().getCategories);
+router.post('/category', isAuthenticated, categoryController.createCategory);
+router.get('/category', isAuthenticated, categoryController.getCategories);
 
 // Product
-router.post('/product', isAuthenticated, upload.single('file'), new ProductController().createProduct);
-router.get('/product/category/:category_id', isAuthenticated, new ProductController().getProductsByCategoryId);
+router.post('/product', isAuthenticated, upload.single('file'), productController.createProduct);
+router.get('/product/category/:category_id', isAuthenticated, productController.getProductsByCategoryId);
 
 // Order
-router.post('/order', isAuthenticated, new OrderController().createOrder);
-router.delete('/order/:order_id', isAuthenticated, new OrderController().removeOrder);
+router.post('/order', isAuthenticated, orderController.createOrder);
+router.delete('/order/:order_id', isAuthenticated, orderController.removeOrder);
+router.put('/order/confirm/:order_id', isAuthenticated, orderController.confirmOrder);
+router.get('/order/current-orders', isAuthenticated, orderController.getCurrentOrders);
+router.get('/order/detail/:order_id', isAuthenticated, orderController.getOrderDetails);
+router.put('/order/finish/:order_id', isAuthenticated, orderController.finishOrder);
 
 // OrderItem 
-router.post('/orderItem', isAuthenticated, new OrderItemController().createOrderItem);
-router.delete('/orderItem/:order_item_id', isAuthenticated, new OrderItemController().removeOrderItem);
+router.post('/orderItem', isAuthenticated, orderItemController.createOrderItem);
+router.delete('/orderItem/:order_item_id', isAuthenticated, orderItemController.removeOrderItem);
 
 export { router };
