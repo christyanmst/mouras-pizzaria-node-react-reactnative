@@ -9,7 +9,6 @@ interface CreateUserRequest {
 
 class UserService {
     async createUser({ name, email, password }: CreateUserRequest) {
-
         if(!(name && email && password)) throw new Error("Missing parameters");
 
         const userAlreadyExists = await prismaClient.user.findFirst({
