@@ -7,6 +7,7 @@ class ProductController {
 
         const productService = new ProductService();
 
+        console.log('req', req.body)
         if (!req.file) throw new Error("error upload file");
 
         const { filename: banner } = req.file;
