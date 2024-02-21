@@ -1,11 +1,9 @@
-import styles from './style.module.scss';
+import styles from './styles.module.scss';
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { api } from "../../../services/apiClient";
 import { toast } from "react-toastify";
-import { canSSRAuth } from "../../../utils/canSSRAuth";
 import { FiUpload } from "react-icons/fi";
 import Image from "next/image";
-import { setupAPIClient } from "@/services/api";
 import Router from "next/router";
 
 
@@ -131,7 +129,7 @@ export default function DetailForm({ product_id }: ProductProps) {
             await api.put(`/product`, formData);
 
             toast.success('Produto editado com sucesso');
-            Router.push('/');
+            Router.push('/product');
 
         } catch (error) {
             console.log(error);

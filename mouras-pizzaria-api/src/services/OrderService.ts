@@ -93,24 +93,19 @@ class OrderService {
                         description: true,
                         banner: true,
                     }
+                },
+                order: {
+                    select: {
+                        id: true,
+                        table_number: true,
+                        status: true,
+                        name: true,
+                    }
                 }
             },
         });
 
-        const orderDetails = await prismaClient.order.findFirst({
-            where: {
-                id: order_id,
-            },
-            select: {
-                id: true,
-                name: true,
-                table_number: true,
-                draft: true,
-                status: true,
-            }
-        });
-
-        return { ...orderDetails, orderItems: orderItemsDetails }
+        return orderItemsDetails;
     }
 
     async finishOrder({ order_id }: HandleOrderRequest) {

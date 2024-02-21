@@ -1,0 +1,108 @@
+.containerSearchForm {
+    max-width: 720px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.containerSearchForm h1 {
+    color: var(--white)
+}
+
+.containerHeader {
+    display: flex;
+    flex-direction: row;
+
+    button {
+        background: transparent;
+        border: none;
+        margin-left: 1rem;
+    }
+}
+
+.listOrders {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+}
+
+.orderItem {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--dark-900);
+    margin-bottom: 1rem;
+    align-items: center;
+    border-radius: 0.3rem;
+
+    button {
+        border: 0;
+        background: transparent;
+        font-size: 1.2rem;
+        color: var(--white);
+        height: 60px;
+        align-items: center;
+        display: flex;
+    }
+}
+
+.tag {
+    width: 9px;
+    background-color: var(--green-900);
+    height: 60px;
+    border-radius: 0.3rem 0 0 0.3rem;
+    margin-right: 1rem;
+}
+
+.containerModal {
+    width: 620px;
+    background-color: var(--dark-700);
+    color: var(--white);
+}
+
+.containerModal h2 {
+    margin: 1rem 0;
+}
+
+.containerModalItem {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+
+    strong {
+        color: var(--green-900)
+    }
+}
+
+.modalDescription {
+    margin-top: 0.5rem;
+    word-break: break-all;
+}
+
+.modalButtonOrder {
+    margin-top: 1.5rem;
+    background-color: var(--green-900);
+    border: 0;
+    padding: 0.5rem 1rem;
+    border-radius: 0.2rem;
+    color: var(--black);
+    float: right;
+}
+
+.tableModal {
+    font-size: 1.2rem;
+    color: var(--white);
+}
+
+@media screen and (max-width: 700px) {
+    .containerModal {
+        width: 430px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .containerModal {
+        width: 330px;
+    }
+}

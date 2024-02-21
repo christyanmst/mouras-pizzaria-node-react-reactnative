@@ -38,6 +38,7 @@ class ProductController {
 
     async editProduct(req: Request, res: Response) {
         const { product_id, name, price, description, category_id } = req.body;
+        console.log('entrou', req.body);
 
         const productService = new ProductService();
 
@@ -52,7 +53,6 @@ class ProductController {
 
     async getProducts(_req: Request, res: Response) {
         const productService = new ProductService();
-        console.log('entrou');
 
         const products = await productService.getProducts();
 

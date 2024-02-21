@@ -45,7 +45,7 @@ router.delete('/product/delete/:product_id', isAuthenticated, productController.
 router.post('/order', isAuthenticated, orderController.createOrder);
 router.delete('/order/:order_id', isAuthenticated, orderController.removeOrder);
 router.put('/order/confirm/:order_id', isAuthenticated, orderController.confirmOrder);
-router.get('/order/current-orders', isAuthenticated, orderController.getCurrentOrders);
+router.get('/order/currentOrders', isAuthenticated, orderController.getCurrentOrders);
 router.get('/order/detail/:order_id', isAuthenticated, orderController.getOrderDetails);
 router.put('/order/finish/:order_id', isAuthenticated, orderController.finishOrder);
 

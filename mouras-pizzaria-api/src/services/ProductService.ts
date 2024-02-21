@@ -101,11 +101,22 @@ class ProductService {
                 price: true,
                 description: true,
                 banner: true,
-                category_id: true,
+                category: {
+                    select: {
+                        name: true
+                    }
+                }
             }
         });
 
-        return products;
+        const adjustedProducts = products.map(product => ({
+            ...product,
+            category: product.category.name,
+            
+        }));
+        
+
+        return adjustedProducts;
     }
 
     async editProduct({ product_id, name, price, description, category_id, banner }: UpdateProductRequest) {
@@ -136,6 +147,7 @@ class ProductService {
                 description,
                 category_id,
                 banner,
+                updated_at: new Date(),
             },
             select: {
                 id: true,
