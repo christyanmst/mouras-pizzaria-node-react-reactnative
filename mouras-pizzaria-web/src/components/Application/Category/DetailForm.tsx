@@ -1,12 +1,11 @@
-import { Header } from "../../components/Header"
 import Head from "next/head"
 import styles from './style.module.scss';
 import { FormEvent, useState } from "react";
-import { api } from "../../services/apiClient";
 import { toast } from "react-toastify";
-import { canSSRAuth } from "../../utils/canSSRAuth";
+import { Header } from "@/components/Header";
+import { api } from "@/services/apiClient";
 
-export default function Category() {
+export default function DetailForm() {
     const [name, setName] = useState('');
 
     async function handleRegister(event: FormEvent) {
@@ -25,25 +24,14 @@ export default function Category() {
     }
     return (
         <>
-            <Head>
-                <title>Categorias - MourasPizza</title>
-            </Head>
-            <Header />
-            <main className={styles.container}>
+            <div className={styles.container}>
                 <h1>Cadastrar categorias</h1>
                 <form className={styles.form} onSubmit={handleRegister}>
                     <input type="text" placeholder="Digite o nome da categoria" className={styles.input} value={name} onChange={(e) => setName(e.target.value)}/>
                 
                     <button type="submit" className={styles.buttonAdd}>Cadastrar</button>
                 </form>
-            </main>
+            </div>
         </>
     )
 }
-
-
-export const getServerSideProps = canSSRAuth(async (ctx) => {
-    return {
-        props: {}
-    }
-})

@@ -1,4 +1,4 @@
-import SearchForm from "@/components/Application/Product/SearchForm";
+import DetailForm from "@/components/Application/Category/DetailForm";
 import { Header } from "@/components/Header";
 import { canSSRAuth } from "@/utils/canSSRAuth";
 import Head from "next/head";
@@ -7,10 +7,10 @@ export default function Page() {
     return (
         <>
             <Head>
-                <title>Visualizar Produtos - MourasPizza</title>
+                <title>Novo Categoria - MourasPizza</title>
             </Head>
             <Header />
-            <SearchForm />
+            <DetailForm />
         </>
         
     )
