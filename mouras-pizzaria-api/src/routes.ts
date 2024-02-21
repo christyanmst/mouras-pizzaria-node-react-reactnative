@@ -36,6 +36,9 @@ router.get('/category', isAuthenticated, categoryController.getCategories);
 // Product
 router.post('/product', isAuthenticated, upload.single('file'), productController.createProduct);
 router.get('/product/category/:category_id', isAuthenticated, productController.getProductsByCategoryId);
+router.put('/product', isAuthenticated, upload.single('file'), productController.editProduct);
+router.get('/product/getAllProducts', isAuthenticated, productController.getProducts);
+router.get('/product/:product_id', isAuthenticated, productController.getProduct);
 
 // Order
 router.post('/order', isAuthenticated, orderController.createOrder);

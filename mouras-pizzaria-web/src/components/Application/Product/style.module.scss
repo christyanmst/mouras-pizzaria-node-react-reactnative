@@ -9,9 +9,42 @@
     flex-direction: column;
 }
 
+.containerSearchForm {
+    max-width: 1080px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    .buttonSearchForm {
+        width: 200px;
+        height: 40px;
+        border: 0;
+        margin-bottom: 1rem;
+        background-color: var(--green-900);
+        font-weight: bold;
+        font-size: 1.2rem;
+        border-radius: 0.3rem;
+        color: var(--dark-700);
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: var(--white);
+        }
+
+        &:active {
+            background-color: var(--red-900);
+            color: var(--white); 
+        }
+    }
+}
+
 .container h1 {
     color: var(--white);
 }
+
 
 .form {
     display: flex;

@@ -1,4 +1,4 @@
-import SearchForm from "@/components/Application/Product/SearchForm";
+import DetailForm from "@/components/Application/Product/DetailForm";
 import { Header } from "@/components/Header";
 import { canSSRAuth } from "@/utils/canSSRAuth";
 import Head from "next/head";
@@ -10,10 +10,10 @@ export default function Page() {
     return (
         <>
             <Head>
-                <title>Visualizar Produtos - MourasPizza</title>
+                <title>Editar Produto - MourasPizza</title>
             </Head>
             <Header />
-            <SearchForm />
+            <DetailForm  product_id={Number(Router.query.id)}/>
         </>
         
     )

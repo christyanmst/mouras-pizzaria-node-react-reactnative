@@ -1,0 +1,56 @@
+.image {
+    border-radius: 50%;
+}
+
+.row {
+    padding: 50px;
+    background-color: blue;
+}
+
+.table { 
+    background-color: var(--dark-900);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table th,
+.table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid var(--white);
+    color: var(--white);
+    
+}
+
+.table th {
+    background-color: var(--white);
+    color: var(--black);
+    font-weight: bold;
+}
+
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end; 
+    gap: 10px;
+}
+
+.buttonContainer button {
+    padding: 10px 20px;
+    background-color: var(--green-900);
+    color: var(--dark-900);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buttonContainer button:hover {
+    background-color: var(--white);
+}
+
+.buttonContainer button:active {
+    background-color: var(--red-900);
+    color: var(--white); 
+}
