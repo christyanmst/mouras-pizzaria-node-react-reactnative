@@ -39,6 +39,7 @@ router.get('/product/category/:category_id', isAuthenticated, productController.
 router.put('/product', isAuthenticated, upload.single('file'), productController.editProduct);
 router.get('/product/getAllProducts', isAuthenticated, productController.getProducts);
 router.get('/product/:product_id', isAuthenticated, productController.getProduct);
+router.delete('/product/delete/:product_id', isAuthenticated, productController.deleteProduct);
 
 // Order
 router.post('/order', isAuthenticated, orderController.createOrder);

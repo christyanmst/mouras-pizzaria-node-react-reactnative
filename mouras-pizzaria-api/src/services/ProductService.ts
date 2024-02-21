@@ -15,7 +15,7 @@ interface GetProductByCategoryRequest{
     category_id: number;
 }
 
-interface GetProductRequest {
+interface HandleProductRequest {
     product_id: number;
 }
 
@@ -73,7 +73,7 @@ class ProductService {
         return products;
     }
 
-    async getProduct({ product_id }: GetProductRequest) {
+    async getProduct({ product_id }: HandleProductRequest) {
         if (!product_id) throw new Error('Missing Parameters');
 
         const product = await prismaClient.product.findFirst({
@@ -143,6 +143,33 @@ class ProductService {
                 price: true,
                 description: true,
                 banner: true,
+            }
+        });
+
+        return product;
+    }
+
+    async deleteProduct({ product_id }: HandleProductRequest) {
+        if (!product_id) throw new Error('Missing parameters');
+
+        const ordersWithProduct = await prismaClient.order.findMany({
+            where: {
+                items: {
+                    some: {
+                        product_id: product_id
+                    }
+                }
+            },
+            select: {
+                id: true,
+            }
+        });
+
+        if (ordersWithProduct.length) throw new Error('Não foi possível deletar, pedido em andamento');
+
+        const product = await prismaClient.product.delete({
+            where: {
+                id: product_id,
             }
         });
 

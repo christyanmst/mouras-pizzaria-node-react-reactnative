@@ -65,8 +65,12 @@ export default function SearchForm() {
         Router.push(`/product/update/${id}`);
     }
 
-    function handleDelete(id: number) {
-        console.log(id);
+    async function handleDelete(id: number) {
+        try {
+            await api.delete(`/product/delete/${id}`);
+        } catch (error) {
+            toast.error('Não foi possível deletar o produto');
+        }
 
     }
 
