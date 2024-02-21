@@ -4,16 +4,19 @@ import styles from './styles.module.scss';
 import { FiX } from 'react-icons/fi';
 
 import { OrderItems } from './SearchForm';
+import { toast } from 'react-toastify';
+import { api } from '@/services/apiClient';
 
 interface ModalOrderProps {
     isOpen: boolean;
     onRequestClose: () => void;
+    onCompleteOrder: () => Promise<void>;
     order: OrderItems;
 }
 
 Modal.setAppElement('#__next');
 
-export function ModalOrder({ isOpen, onRequestClose, order }: ModalOrderProps) {
+export function ModalOrder({ isOpen, onRequestClose, onCompleteOrder, order }: ModalOrderProps) {
 
     const customStyles = {
         content: {
@@ -34,6 +37,17 @@ export function ModalOrder({ isOpen, onRequestClose, order }: ModalOrderProps) {
         })
 
         return total.toFixed(2);
+    }
+
+    async function finishOrder(orderId: number) {
+        try {
+            await api.put(`/order/finish/${orderId}`);
+            toast.success('Pedido finalizado com sucesso');
+            await onCompleteOrder();
+            onRequestClose();
+        } catch (error) {
+            toast.error('Não foi possível finalizar o pedido.');
+        }
     }
 
     return (
@@ -58,7 +72,7 @@ export function ModalOrder({ isOpen, onRequestClose, order }: ModalOrderProps) {
                 <span className={styles.tableModal}>Total do Pedido: R$ {calculateTotal()}</span>
 
             </div>
-            <button className={styles.modalButtonOrder} onClick={() => { }}>
+            <button className={styles.modalButtonOrder} onClick={() => finishOrder(order[0].order.id)}>
                 Concluir pedido
             </button>
         </Modal>
