@@ -7,19 +7,21 @@
     background-color: blue;
 }
 
-.table { 
+.table {
     background-color: var(--dark-900);
     border-radius: 8px;
     overflow: hidden;
+    border-collapse: collapse;
 }
 
 .table th,
 .table td {
     padding: 8px;
     text-align: left;
-    border-bottom: 1px solid var(--white);
+    // border-bottom: 1px solid var(--white);
     color: var(--white);
-    
+    border: none;
+
 }
 
 .table th {
@@ -28,29 +30,32 @@
     font-weight: bold;
 }
 
+// .table button {
+//     background-color: var(--white);
+//     margin: 0 5px;
+
+// }
 
 .buttonContainer {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end; 
+    justify-content: flex-end;
     gap: 10px;
-}
 
-.buttonContainer button {
-    padding: 10px 20px;
-    background-color: var(--green-900);
-    color: var(--dark-900);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    .icon {
+        color: var(--red-900);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
 
-.buttonContainer button:hover {
-    background-color: var(--white);
-}
+        &:hover {
+            color: var(--white);
 
-.buttonContainer button:active {
-    background-color: var(--red-900);
-    color: var(--white); 
+        }
+
+        &:active {
+            color: var(--red-900);
+        }
+    }
 }

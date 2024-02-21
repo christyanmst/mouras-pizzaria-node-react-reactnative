@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styles from './styles.module.scss';
 import { TableProps } from 'reactstrap';
 import React from 'react';
+import { FiEdit, FiX } from "react-icons/fi";
 
 interface NewTableProps extends TableProps {
     columns: TableColumns;
@@ -55,8 +56,8 @@ export function CustomizedTable({ ...props }: NewTableProps) {
                         {props.extraBtns && (
                             <td>
                                 <div className={styles.buttonContainer}>
-                                    <button key={"button-edit"} onClick={() => props.handleEdit && props.handleEdit(row['id'])} className={styles.buttonEdit}>editar</button>
-                                    <button key={"button-delete"} onClick={() => props.handleDelete && props.handleDelete(row['id'])} className={styles.buttonAdd}>deletar</button>
+                                    <FiEdit key={"button-edit"} className={styles.icon} onClick={() => props.handleEdit && props.handleEdit(row['id'])} />
+                                    <FiX key={"button-delete"} className={styles.icon} onClick={() => props.handleDelete && props.handleDelete(row['id'])} />
                                 </div>
                             </td>
                         )}
