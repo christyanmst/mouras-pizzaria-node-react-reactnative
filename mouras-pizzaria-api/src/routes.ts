@@ -23,7 +23,7 @@ const orderController = new OrderController();
 const orderItemController = new OrderItemController();
 
 // User
-router.post('/users', isAuthenticated, userController.createUser);
+router.post('/users', userController.createUser);
 
 // Login
 router.get('/my-profile', isAuthenticated, loginController.myProfile);

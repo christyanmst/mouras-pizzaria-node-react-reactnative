@@ -166,6 +166,7 @@ class ProductService {
 
         const ordersWithProduct = await prismaClient.order.findMany({
             where: {
+                status: false,
                 items: {
                     some: {
                         product_id: product_id
@@ -179,11 +180,24 @@ class ProductService {
 
         if (ordersWithProduct.length) throw new Error('Não foi possível deletar, pedido em andamento');
 
-        const product = await prismaClient.product.delete({
+        const product = await prismaClient.product.findUnique({
             where: {
                 id: product_id,
-            }
-        });
+            },
+            include: {
+                items: {
+                include: {
+                    order: true,
+                },
+                },
+            },
+            });
+
+            await prismaClient.product.delete({
+            where: {
+                id: product_id,
+            },
+            });
 
         return product;
     }

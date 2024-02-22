@@ -89,7 +89,7 @@ export default function DetailForm({ product_id }: ProductProps) {
         try {
             const formData = new FormData();
 
-            if (!(name && price && description && imageAvatar && categorySelected != null)) {
+            if (!(name && price && description && imageAvatar && categorySelected)) {
                 return;
             }
 
@@ -102,7 +102,7 @@ export default function DetailForm({ product_id }: ProductProps) {
             const result = await api.post('/product', formData);
 
             toast.success('Produto cadastrado com sucesso');
-            Router.push(`/product2/${result.data.id}`);
+            Router.push('/product');
 
         } catch (error) {
             console.log(error);
@@ -115,7 +115,7 @@ export default function DetailForm({ product_id }: ProductProps) {
         try {
             const formData = new FormData();
 
-            if (!(name && price && description && imageAvatar && categorySelected != null)) {
+            if (!(name && price && description && imageAvatar && categorySelected)) {
                 return;
             }
 
@@ -123,7 +123,7 @@ export default function DetailForm({ product_id }: ProductProps) {
             formData.append('price', String(price));
             formData.append('description', description);
             formData.append('file', imageAvatar);
-            formData.append('category_id', String(categories[categorySelected].id));
+            formData.append('category_id', String(categorySelected));
             formData.append('product_id', String(product_id));
 
             await api.put(`/product`, formData);
@@ -159,6 +159,7 @@ export default function DetailForm({ product_id }: ProductProps) {
             <h1>{product_id ? 'Editar Produto' : 'Novo Produto'}</h1>
             <form className={styles.form} onSubmit={(e) => product_id ? handleEdit(e) : handleRegister(e)}>
                 <select value={categorySelected} onChange={(e) => handleChangeCategory(e)}>
+                    <option value={0} >Selecione uma categoria</option>
                     {categories.map((x) => {
                         return (
                             <option key={x.id} value={x.id}>
